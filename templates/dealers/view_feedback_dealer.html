@@ -1,0 +1,43 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Data Table Card -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Feedback Comments</h4>
+      </div>
+      <div class="card-body">
+        <form id="form1" name="form1" method="post" action="">
+          <!-- Table -->
+          <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>SI.NO</th>
+                <th>Date</th>
+                <th>Comment</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ i.date }}</td>
+                  <td>{{ i.comments }}</td>
+                  <td>{{ i.rating }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+
+</body>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-light">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Worker Management</h4>
+            </div>
+            <div class="card-body">
+                <form id="form1" name="form1" method="post" action="">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover text-center">
+                            <thead class="bg-dark text-light">
+                                <tr>
+                                    <th>SI.NO</th>
+                                    <th>NAME</th>
+                                    <th>CONTACT</th>
+                                    <th>EMAIL</th>
+                                    <th>SKILLS</th>
+                                    <th>AVAILABILITY</th>
+                                    <th>IMAGE</th>
+                                    <th>ID PROOF NUMBER</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-dark">
+                                {% for i in data %}
+                                <tr class="hover-dark-red">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ i.name }}</td>
+                                    <td>{{ i.contact }}</td>
+                                    <td>{{ i.email }}</td>
+                                    <td>{{ i.skills }}</td>
+                                    <td>{{ i.availability }}</td>
+                                    <td>
+                                        <img src="{{ i.image.url }}" class="img-thumbnail" height="100" width="100">
+                                    </td>
+                                    <td>{{ i.id_proof_number }}</td>
+                                    <td>
+                                        <a href="/edit_worker/{{ i.id }}" class="btn btn-warning btn-sm">Edit</a><br>
+                                        <a href="/delete_worker/{{ i.id }}" class="btn btn-danger btn-sm mt-2">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="9">
+                                        <a href="/add_manage_worker" class="btn btn-success">Add Worker</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Dark Red and Black Theme Styling */
+        body {
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table-dark th, .table-dark td {
+            border-color: #8B0000;
+        }
+
+        /* Hover effect for table rows */
+        .hover-dark-red:hover {
+            background-color: rgba(139, 0, 0, 0.2) !important;
+        }
+
+        .card-header {
+            background-color: #8B0000;
+            color: white;
+        }
+
+        .card-body {
+            background-color: #121212;
+        }
+
+        .btn-sm {
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-sm:hover {
+            opacity: 0.8;
+        }
+
+        .badge.bg-info {
+            background-color: #17a2b8;
+        }
+
+        .img-thumbnail {
+            border-radius: 10px;
+            border: 2px solid #444;
+        }
+
+        .table-responsive {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    </style>
+</body>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Card for Form -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Send a Complaint</h4>
+      </div>
+      <div class="card-body">
+        <form action="/send_complaint_post" method="post">
+          <!-- View Replay Link -->
+          <div class="text-center mb-4">
+            <a href="/view_replay_dealer" class="btn btn-outline-primary">View Reply</a>
+          </div>
+
+          <!-- Complaint Input -->
+          <div class="form-group">
+            <label for="complaint" class="font-weight-bold">Complaint</label>
+            <input type="text" name="textfield" id="complaint" class="form-control" placeholder="Enter your complaint" required>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group text-center">
+            <button type="submit" name="Submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-paper-plane"></i> Send Complaint
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+
+</body>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Feedback Form Card -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Send Your Feedback</h4>
+      </div>
+      <div class="card-body">
+        <form action="/send_feedback_post" method="post">
+
+          <!-- View Feedback Link -->
+{#          <div class="text-center mb-4">#}
+{#            <a href="/view_feedback_dealer" class="btn btn-outline-primary">View Feedback</a>#}
+{#          </div>#}
+
+          <!-- Comment Input -->
+          <div class="form-group">
+            <label for="comment" class="font-weight-bold">Comment</label>
+            <input type="text" name="textfield" id="comment" class="form-control" placeholder="Enter your comment" required>
+          </div>
+
+          <!-- Rating Input (Star Rating) -->
+          <div class="form-group">
+            <label for="rating" class="font-weight-bold">Rating</label>
+            <div id="rating-stars" class="text-center">
+              <!-- Star Rating -->
+              <span class="fa fa-star star" data-value="1"></span>
+              <span class="fa fa-star star" data-value="2"></span>
+              <span class="fa fa-star star" data-value="3"></span>
+              <span class="fa fa-star star" data-value="4"></span>
+              <span class="fa fa-star star" data-value="5"></span>
+            </div>
+            <input type="hidden" name="rating" id="rating" value="0">
+          </div>
+            <br>
+
+          <!-- Submit Button -->
+          <div class="form-group text-center">
+            <button type="submit" name="Submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-paper-plane"></i> Send Feedback
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+  <!-- Add the required JS -->
+  <script>
+    // Star rating system
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating');
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = star.getAttribute('data-value');
+        ratingInput.value = rating;
+
+        // Update the star colors
+        stars.forEach(star => {
+          if (star.getAttribute('data-value') <= rating) {
+            star.classList.add('text-warning');
+          } else {
+            star.classList.remove('text-warning');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+{% endblock %}

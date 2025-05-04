@@ -1,0 +1,98 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Product Details Card -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Product Details</h4>
+      </div>
+      <div class="card-body">
+        <form action="" method="get">
+          <!-- Product Information Table -->
+          <table class="table table-bordered table-striped">
+            <tr>
+              <td class="font-weight-bold">NAME</td>
+              <td>{{ i.name }}</td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold">DESCRIPTION</td>
+              <td>{{ i.description }}</td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold">PRICE</td>
+              <td>&#8377;{{ i.price }}</td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold">STOCK</td>
+              <td>{{ i.stock }}</td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold">IMAGE</td>
+              <td><img src="{{ i.image.url }}" class="img-fluid" style="max-height: 150px; object-fit: cover;" alt="Product Image"></td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <!-- Buttons to Order and Add to Cart -->
+                <a href="/order" class="btn btn-success btn-lg m-2">ORDER NOW</a>
+                <a href="/cart/{{ i.id }}" class="btn btn-warning btn-lg m-2">CART NOW</a>
+                  <a href="/send_feedback/{{ i.id }}" class="btn btn-primary btn-lg"> FEEDBACK</a>
+
+
+
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card shadow-lg border-primary rounded mt-5">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Customer Feedback & Ratings</h4>
+      </div>
+      <div class="card-body">
+        <!-- Feedback Table -->
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Customer</th>
+              <th>Rating</th>
+              <th>Feedback</th>
+                <th>DESCRIPTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for feedback in feed %}
+              <tr>
+                <td>{{ feedback.DEALEARS.name }}</td>
+                <td>
+                    {{ feedback.rating }}
+                     <td>
+                                    {% for _ in "?"|rjust:feedback.rating %}
+                                        <i class="fas fa-star text-warning"></i>
+                                    {% endfor %}
+{#                                    ({{ feedback.rating }})#}
+                                </td>
+
+                </td>
+                <td>{{ feedback.comments }}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="3" class="text-center">No feedback available yet.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+</body>
+{% endblock %}

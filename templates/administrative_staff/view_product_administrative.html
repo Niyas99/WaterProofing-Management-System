@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1">
+    <tr>
+      <td>NAME</td>
+      
+      
+      <td><label>
+        <input type="text" name="textfield" />
+      </label></td>
+      <td><label>
+        <input type="submit" name="Submit" value="SEARCH" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>SI.NO</td>
+      <td>NAME</td>
+      <td>DESCRIPTION</td>
+      <td>PRICE</td>
+      <td>STOCK</td>
+      <td>IMAGE</td>
+      <td>ACTION </td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;<{{ i.name }}/td>
+      <td>&nbsp;{{ i.description }}</td>
+      <td>&nbsp;{{ i.price }}</td>
+      <td>&nbsp;{{ i.stock }}</td>
+      <td>&nbsp;<img src="{{ i.image.url }}" height="100" width="100"></td>
+      <td><a href="/product_update/{{ i.id }}">UPDATE</a><br><br><a href="#">DELETE</a></td>
+    </tr>
+      {% endfor %}
+	<tr>
+	<td><a href="/add_product_administrative">ADD PRODUCT</a></td>
+	</tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Table with Product Info -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Product Information</h4>
+      </div>
+      <div class="card-body">
+        <form id="form1" name="form1" method="post" action="">
+          <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>SI.NO</th>
+                <th>PRODUCT INFO</th>
+                <th>QUANTITY</th>
+                <th>AMOUNT</th>
+                  <th>REVIEW</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>
+                    <strong>{{ i.PRODUCT.name }}</strong><br>
+                    <img src="{{ i.PRODUCT.image.url }}" class="img-fluid rounded-circle mb-2" style="height: 100px; object-fit: cover;" alt="{{ i.PRODUCT.name }}">
+                    <br>
+                    <small class="text-muted">{{ i.PRODUCT.description }}</small>
+                  </td>
+                  <td>{{ i.quantity }}</td>
+                  <td>${{ i.amount }}</td>
+                <td class="text-center">
+                  <!-- Rating Button -->
+                  <a href="/send_feedback/{{ i.PRODUCT.id }}" class="btn btn-warning btn-sm shadow-lg hover-shadow-lg">
+                    <i class="fas fa-star"></i> RATING
+                  </a>
+                </td>
+                </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+      </div>
+
+      <!-- Go Back Button -->
+      <div class="card-footer text-center">
+        <button class="btn btn-secondary" onclick="window.history.back();">
+          <i class="fas fa-arrow-left"></i> Go Back
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+</body>
+{% endblock %}

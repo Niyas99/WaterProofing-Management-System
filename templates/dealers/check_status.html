@@ -1,0 +1,59 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Table inside a Card -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Job Request Information</h4>
+      </div>
+      <div class="card-body">
+        <form id="form1" name="form1" method="post" action="">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th>SI.NO</th>
+                  <th>REQUEST DATE</th>
+                  <th>WORK</th>
+                  <th>DESCRIPTION</th>
+                  <th>WORKER</th>
+                  <th>WORKER CONTACT</th>
+                  <th>ALLOCATION DATE</th>
+                  <th>START DATE</th>
+                  <th>END DATE</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in data %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.JOB_REQUEST.date }}</td>
+                    <td>{{ i.JOB_REQUEST.work }}</td>
+                    <td>{{ i.JOB_REQUEST.description }}</td>
+                    <td>{{ i.WORKER.name }}</td>
+                    <td>{{ i.WORKER.contact }}</td>
+                    <td>{{ i.allocation_date }}</td>
+                    <td>{{ i.start_date }}</td>
+                    <td>{{ i.end_date }}</td>
+                    <td>
+                      <span class="badge {% if i.status == 'Completed' %}badge-success{% elif i.status == 'In Progress' %}badge-warning{% else %}badge-danger{% endif %}">
+                        {{ i.status }}
+                      </span>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+</body>
+{% endblock %}

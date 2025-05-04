@@ -1,0 +1,79 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+<body class="bg-dark text-light">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Dealer Verification</h4>
+            </div>
+            <div class="card-body">
+                <form id="form1" name="form1" method="post" action="">
+                    <table class="table table-dark table-bordered">
+                        <thead>
+                            <tr>
+                                <th>SI.NO</th>
+                                <th>NAME</th>
+                                <th>CONTACT</th>
+                                <th>EMAIL</th>
+                                <th>PLACE</th>
+                                <th>POST</th>
+                                <th>PINCODE</th>
+                                <th>ID PROOF NUMBER</th>
+                                <th>IMAGE</th>
+                                <th>VERIFY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.contact }}</td>
+                                <td>{{ i.email }}</td>
+                                <td>{{ i.place }}</td>
+                                <td>{{ i.post }}</td>
+                                <td>{{ i.pin }}</td>
+                                <td>{{ i.id_proof_number }}</td>
+                                <td><img src="{{ i.image.url }}" height="100" width="100"></td>
+                                <td>
+                                    {% if i.LOGIN.type == 'PENDING' %}
+                                    <a href="/accept_dealers/{{ i.LOGIN.id }}" class="btn btn-success btn-sm">ACCEPT</a>
+                                    <br><br>
+                                    <a href="/reject_dealers/{{ i.LOGIN.id }}" class="btn btn-danger btn-sm">REJECT</a>
+                                    {% else %}
+                                    {{ i.LOGIN.type }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+        /* Table styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            text-align: center;
+        }
+        .btn-sm {
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .table {
+                font-size: 0.85rem;
+            }
+            .form-control-sm {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+{% endblock %}

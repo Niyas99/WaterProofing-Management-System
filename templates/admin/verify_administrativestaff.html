@@ -1,0 +1,108 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+<body class="bg-black text-light">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Administrative Staff</h4>
+{#                <input type="text" id="searchBox" class="form-control w-25 bg-black text-white border-danger" placeholder="? Search...">#}
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center" id="staffTable">
+                        <thead class="bg-danger text-white">
+                            <tr>
+                                <th>SI.NO</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>ID Proof Number</th>
+                                <th>Image</th>
+                                <th>Verify</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-dark">
+                            {% for i in data %}
+                            <tr class="hover-red">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.contact }}</td>
+                                <td>{{ i.email }}</td>
+                                <td>{{ i.role }}</td>
+                                <td>{{ i.id_proof_number }}</td>
+                                <td><img src="{{ i.image.url }}" height="100" width="100"></td>
+                                <td>
+                                    {% if i.LOGIN.type == 'PENDING' %}
+                                        <a href="/accept_administrativestaff/{{ i.LOGIN.id }}" class="btn btn-success btn-sm">Accept</a><br><br>
+                                        <a href="/reject_administrativestaff/{{ i.LOGIN.id }}" class="btn btn-danger btn-sm">Reject</a>
+                                    {% else %}
+                                        <span class="badge bg-info">{{ i.LOGIN.type }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FontAwesome Icons & Live Search Script -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("searchBox").addEventListener("keyup", function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#staffTable tbody tr");
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        });
+    </script>
+
+    <style>
+        /* Hover effect for table rows */
+        .hover-red:hover {
+            background-color: rgba(255, 0, 0, 0.2) !important;
+        }
+
+        /* Table Styling */
+        .table-dark th, .table-dark td {
+            border-color: red;
+        }
+
+        /* Search Box Placeholder */
+        #searchBox::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Card & Table Responsiveness */
+        .card-body {
+            overflow-x: auto;
+        }
+
+        /* Table Styling for Smaller Screens */
+        @media (max-width: 768px) {
+            .table-responsive {
+                margin-top: 1rem;
+            }
+
+            .table th, .table td {
+                font-size: 0.9rem;
+            }
+
+            #searchBox {
+                width: 60%;
+            }
+        }
+
+        /* Text color for badges */
+        .badge {
+            color: white;
+        }
+    </style>
+</body>
+{% endblock %}

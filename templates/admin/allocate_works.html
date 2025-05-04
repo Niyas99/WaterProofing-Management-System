@@ -1,0 +1,57 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+<body class="bg-black text-light">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Allocate Work</h4>
+            </div>
+            <div class="card-body">
+                <form id="form1" method="post" action="/allocate_works_post">
+                    <div class="mb-3">
+                        <label class="form-label">Worker</label>
+                        <select name="select" class="form-select bg-black text-white border-danger" required>
+                            {% for i in data %}
+                            <option value="{{ i.id }}">{{ i.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Start Date</label>
+                            <input type="date" name="startdate" class="form-control form-control-sm bg-black text-white border-danger" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">End Date</label>
+                            <input type="date" name="enddate" class="form-control form-control-sm bg-black text-white border-danger" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">ASSIGN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Compact Inputs */
+        .form-control-sm, .form-select {
+            width: 100%;
+            font-size: 0.85rem;
+            padding: 6px;
+        }
+
+        /* Submit Button Styling */
+        .btn-danger {
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .form-control-sm {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+
+<body class="bg-black text-light">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Dealer Work Allocation</h4>
+                <input type="text" id="searchBox" class="form-control w-25 bg-black text-white border-danger" placeholder="? Search...">
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center" id="worksTable">
+                        <thead class="bg-danger text-white">
+                            <tr>
+                                <th>SI.NO</th>
+                                <th>Dealer</th>
+                                <th>Work</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-dark">
+                            {% for i in data %}
+                            <tr class="hover-red">
+                                <td>{{ forloop.counter }}</td>
+                                <td><strong class="text-danger">{{ i.DEALEARS.name }}</strong></td>
+                                <td>{{ i.work }}</td>
+                                <td>{{ i.description }}</td>
+                                <td>{{ i.date }}</td>
+                                <td>
+                                    <a href="/allocate_works/{{ i.id }}" class="btn btn-primary btn-sm">Allocate</a> (PENDING)<br>
+                                    <br><a href="/view_job_allocation" class="btn btn-secondary btn-sm">View Allocation</a> (ALLOCATED)
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FontAwesome Icons & Live Search Script -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("searchBox").addEventListener("keyup", function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#worksTable tbody tr");
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        });
+    </script>
+
+    <style>
+        /* Hover effect for table rows */
+        .hover-red:hover {
+            background-color: rgba(255, 0, 0, 0.2) !important;
+        }
+
+        /* Table Styling */
+        .table-dark th, .table-dark td {
+            border-color: red;
+        }
+
+        /* Search Box Placeholder */
+        #searchBox::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Card & Table Responsiveness */
+        .card-body {
+            overflow-x: auto;
+        }
+
+        /* Table Styling for Smaller Screens */
+        @media (max-width: 768px) {
+            .table-responsive {
+                margin-top: 1rem;
+            }
+
+            .table th, .table td {
+                font-size: 0.9rem;
+            }
+
+            #searchBox {
+                width: 60%;
+            }
+        }
+
+        /* Text color for buttons */
+        .btn-primary, .btn-secondary {
+            margin: 5px;
+        }
+    </style>
+
+</body>
+
+{% endblock %}

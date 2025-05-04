@@ -1,0 +1,73 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+<body class="bg-black text-light">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Edit Worker</h4>
+            </div>
+            <div class="card-body">
+                <form action="/edit_worker_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                    <table class="table table-dark table-bordered">
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="textfield" class="form-control form-control-sm bg-black text-white border-danger" value="{{ data.name }}" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Contact</td>
+                            <td><input type="text" name="textfield3" class="form-control form-control-sm bg-black text-white border-danger" value="{{ data.contact }}" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" name="textfield2" class="form-control form-control-sm bg-black text-white border-danger" value="{{ data.email }}" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Skill</td>
+                            <td><input type="text" name="textfield4" class="form-control form-control-sm bg-black text-white border-danger" value="{{ data.skills }}" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Availability</td>
+                            <td><input type="text" name="textfield5" class="form-control form-control-sm bg-black text-white border-danger" value="{{ data.availability }}" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Image</td>
+                            <td><input type="file" name="file" class="form-control form-control-sm bg-black text-white border-danger" /></td>
+                        </tr>
+                        <tr>
+                            <td>ID Proof Number</td>
+                            <td><input type="text" name="textfield6" class="form-control form-control-sm bg-black text-white border-danger" value="{{ data.id_proof_number }}" required /></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><input type="submit" name="Submit" class="btn btn-danger w-100" value="Submit" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .form-control-sm {
+            width: 100%;
+            font-size: 0.85rem;
+            padding: 5px;
+        }
+
+        .btn-danger {
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .form-control-sm {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+{% endblock %}

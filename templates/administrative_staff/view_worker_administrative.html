@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="699" border="1">
+    <tr>
+        <td>SI.NO</td>
+      <td width="50">NAME </td>
+      <td width="75">CONTACT</td>
+      <td width="48">EMAIL</td>
+      <td width="53">SKILLS</td>
+      <td width="107">AVAILABILITY</td>
+      <td width="50">IMAGE</td>
+      <td width="149">ID PROOF NUMBER </td>
+      <td width="115">ACTION</td>
+    </tr>
+      {% for i in data %}
+
+
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.name }}</td>
+      <td>&nbsp;{{ i.contact }}</td>
+      <td>&nbsp;{{ i.email }}</td>
+      <td>&nbsp;{{ i.skills }}</td>
+      <td>&nbsp;{{ i.availability }}</td>
+      <td><img src="{{ i.image.url }}" height="100" width="100"></td>
+        <td>{{  i.id_proof_number }}</td>
+      <td><a href="#">EDIT</a><br><br><a href="#">DELETE</a></td>
+    </tr>
+
+      {% endfor %}
+      <tr>
+	<td><a href="/add_manage_worker">ADD WORKER</a></td>
+	</tr>
+
+  </table>
+</form>
+</body>
+</html>

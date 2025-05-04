@@ -1,0 +1,110 @@
+{% extends 'admin/index2.html' %}
+{% block body %}
+
+<body class="bg-black text-light">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Dealer Reviews</h4>
+{#                <input type="text" id="searchBox" class="form-control w-25 bg-black text-white border-danger" placeholder="? Search...">#}
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center" id="reviewsTable">
+                        <thead class="bg-danger text-white">
+                            <tr>
+                                <th>SI.NO</th>
+                                <th>Dealer</th>
+                                <th>Product</th>
+                                <th>Comments</th>
+                                <th>Rating</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-dark">
+                            {% for i in data %}
+                            <tr class="hover-red">
+                                <td>{{ forloop.counter }}</td>
+                                <td><strong class="text-danger">{{ i.DEALEARS.name }}</strong></td>
+                                <td><strong class="text-danger"><img src="{{ i.PRODUCT.image.url }}" height="100px" width="100px"><br>{{ i.PRODUCT.name }}</strong></td>
+                                <td>{{ i.comments }}</td>
+                                 <td>
+                                    {% for _ in "?"|rjust:i.rating %}
+                                        <i class="fas fa-star text-warning"></i>
+                                    {% endfor %}
+                                    ({{ i.rating }})
+                                </td>
+                                <td>{{ i.date }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FontAwesome Icons & Live Search Script -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("searchBox").addEventListener("keyup", function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#reviewsTable tbody tr");
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        });
+    </script>
+
+    <style>
+        /* Hover effect for table rows */
+        .hover-red:hover {
+            background-color: rgba(255, 0, 0, 0.2) !important;
+        }
+
+        /* Table Styling */
+        .table-dark th, .table-dark td {
+            border-color: red;
+        }
+
+        /* Search Box Placeholder */
+        #searchBox::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Card & Table Responsiveness */
+        .card-body {
+            overflow-x: auto;
+        }
+
+        /* Table Styling for Smaller Screens */
+        @media (max-width: 768px) {
+            .table-responsive {
+                margin-top: 1rem;
+            }
+
+            .table th, .table td {
+                font-size: 0.9rem;
+            }
+
+            #searchBox {
+                width: 60%;
+            }
+        }
+
+        /* Text color for ratings */
+        .text-warning {
+            color: #FFD700 !important;
+        }
+
+        /* Add border color for table */
+        .table-bordered {
+            border: 1px solid red;
+        }
+    </style>
+
+</body>
+
+{% endblock %}

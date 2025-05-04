@@ -1,0 +1,53 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Heading -->
+    <div class="text-center mb-4">
+      <h2 class="display-4 text-primary">Waterproofing Products</h2>
+      <p class="lead text-muted">Browse our selection of waterproofing solutions and add to your cart</p>
+    </div>
+
+    <!-- Product Grid (like shopping cart product listing) -->
+    <div class="row">
+      {% for i in data %}
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card shadow-sm border-light rounded">
+            <img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name }}" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ i.name }}</h5>
+                <p>&#8377;{{ i.price }}</p>
+              <p class="card-text text-muted">High-performance waterproofing solution</p>
+
+              <!-- Button Container -->
+              <div class="d-flex justify-content-between">
+                <a href="/view_product_more_dealer/{{ i.id }}" class="btn btn-outline-primary btn-block w-48">View Details</a>
+                  <a href="/cart/{{ i.id }}" class="btn btn-success btn-block w-48 mt-3 mt-md-0 add-to-cart">Add to Cart</a>
+{#                <button class="btn btn-success btn-block w-48 mt-3 mt-md-0 add-to-cart" data-product-id="{{ i.id }}">Add to Cart</button>#}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Cart Summary Section -->
+{#    <div class="row mt-5">#}
+{#      <div class="col-12 text-center">#}
+{#        <h3>Your Cart</h3>#}
+{#        <div id="cart-summary" class="card p-4 shadow-sm">#}
+{#          <p>No products added to the cart yet.</p>#}
+{#          <div id="cart-items" class="list-group"></div>#}
+{#          <hr>#}
+{#          <h5>Total: $<span id="cart-total">0.00</span></h5>#}
+{#          <button id="checkout" class="btn btn-success btn-lg mt-3">Proceed to Checkout</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+
+
+</body>
+
+{% endblock %}

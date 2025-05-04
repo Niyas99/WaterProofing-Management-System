@@ -1,0 +1,66 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Search Form Section -->
+    <div class="card shadow-lg border-primary rounded mb-5">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Search Orders by Date</h4>
+      </div>
+      <div class="card-body">
+        <form id="form1" name="form1" method="post" action="/search_date">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="fromdate" class="text-primary font-weight-bold">FROM DATE</label>
+              <input type="date" name="fromdate" id="fromdate" class="form-control" required />
+            </div>
+            <div class="col-md-3">
+              <label for="todate" class="text-primary font-weight-bold">TO DATE</label>
+              <input type="date" name="todate" id="todate" class="form-control" required />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <input type="submit" name="Submit" value="SEARCH" class="btn btn-success btn-lg btn-block mt-3 shadow-sm hover-shadow-lg">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Results Table Section -->
+    <div class="card shadow-sm border-light rounded">
+      <div class="card-body">
+        <table class="table table-striped table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>SI.NO</th>
+              <th>DATE</th>
+              <th>AMOUNT</th>
+              <th>STATUS</th>
+              <th>ACTION</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.date }}</td>
+                <td>₹{{ i.amount }}</td>
+                <td>{{ i.status }}</td>
+                <td class="text-center">
+                  <a href="/check_order_more/{{ i.id }}" class="btn btn-info btn-sm">
+                    <i class="fas fa-info-circle"></i> MORE
+                  </a>
+                </td>
+
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+</body>
+{% endblock %}

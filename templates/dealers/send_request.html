@@ -1,0 +1,41 @@
+{% extends 'dealers/index2.html' %}
+{% block body %}
+
+<body class="bg-light">
+  <div class="container my-5">
+    <!-- Request Form Card -->
+    <div class="card shadow-lg border-primary rounded">
+      <div class="card-header text-center bg-primary text-white rounded-top">
+        <h4 class="font-weight-bold">Send Request</h4>
+      </div>
+      <div class="card-body">
+        <form id="form1" name="form1" method="post" action="/send_request_post">
+
+          <!-- Work Input -->
+          <div class="form-group">
+            <label for="work" class="font-weight-bold">Work</label>
+            <input type="text" name="textfield" id="work" class="form-control" placeholder="Enter the work" required>
+          </div>
+
+          <!-- Description Input -->
+          <div class="form-group">
+            <label for="description" class="font-weight-bold">Description</label>
+            <input type="text" name="textfield2" id="description" class="form-control" placeholder="Enter the work description" required>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group text-center">
+            <button type="submit" name="Submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-paper-plane"></i> Submit Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+
+</body>
+{% endblock %}
